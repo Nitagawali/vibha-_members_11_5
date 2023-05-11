@@ -1,0 +1,72 @@
+:host {
+  .hljs {
+    background: transparent !important;
+  }
+}
+
+.website{
+  padding: 0 1em;
+  font-weight: bold;
+  color: #3F4E6E;
+  font: PopponsRegular;
+}
+.website:hover{
+  cursor: pointer;
+  font-weight: bold;
+  font: PopponsRegular;
+  color: #FF6600;
+}
+
+.card-textt{
+  font-size: 0.9375em;
+  font-weight: 600;
+  margin-bottom: 0.5vh;
+  padding: 0 1em;
+}
+.card-textt-b{
+  font-size: 0.9375em;
+  margin-top: 0;
+  color: #3F4E6E;
+  padding: 0 1em;
+}
+
+.card {
+  .card-body{
+      color: #3F4E6E;
+      padding: 0 1em;
+      margin-bottom: 1vh;
+      p {
+          color: #6F7E9F;
+          font-size: 0.875em;
+          margin-top: 1vh;
+          margin-bottom: 0.8vh;
+      }
+      .card-title{
+          font-weight: 600;
+          font-size: 1.25em;
+          line-height: 1.5;
+      }
+      .card-text{
+          font-size: 0.9375em;
+          font-weight: 600;
+          margin-bottom: 0.3vh;
+      }
+      .card-text-b{
+          font-size: 0.9375em;
+          margin-top: 0;
+          color: #3F4E6E;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          //white-space: nowrap;
+      }
+      span{
+          font-size: 1em;
+          i{
+              margin-right: 0.6vw;
+          }
+      }
+      span:hover{
+          cursor: pointer;
+      }
+  }
+}

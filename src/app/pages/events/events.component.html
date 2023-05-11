@@ -1,0 +1,181 @@
+<!-- <app-notice [svg]="'./assets/media/svg/icons/Tools/Tools.svg'">
+  <p>
+    Events page
+    <code>Preview</code> button to preview the changes.
+  </p>
+</app-notice> -->
+<!--begin::Card-->
+<div class="card card-custom gutter-b">
+  <!--begin::Header-->
+  <div class="card-header card-header-tabs-line">
+    <ul class="nav nav-dark nav-bold nav-tabs nav-tabs-line" role="tablist">
+      <li class="nav-item">
+        <a
+          (click)="setActiveTab(1)"
+          class="nav-link cursor-pointer"
+          [ngClass]="getActiveTabCSSClass(1)"
+          role="tab"
+        >
+        All Programs
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          (click)="setActiveTab(2)"
+          class="nav-link cursor-pointer"
+          [ngClass]="getActiveTabCSSClass(2)"
+          role="tab"
+        >
+        Programs Schedule
+          
+        </a>
+      </li>
+      <!-- <li class="nav-item">
+        <a
+          (click)="setActiveTab(3)"
+          class="nav-link cursor-pointer"
+          [ngClass]="getActiveTabCSSClass(3)"
+          role="tab"
+        >
+          Completed Programs
+        </a>
+      </li> -->
+    </ul>
+  </div>
+  <!--end::Header-->
+  <!--begin::Form-->
+    <!--begin::Body-->
+    <div class="card-body">
+      <div class="tab-content pt-3">
+
+        <!-- begin::Ongoing -->
+        <div class="tab-pane" [ngClass]="getActiveTabCSSClass(1)" *ngIf="evts.length">
+
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-4" *ngFor="let item of evts;let i=index" >
+                <div class="card card-custom gutter-b" style="height: 24.05em !important;">
+                  <img class="card-img-top" src="{{item.image_url}}" height="170">
+                  <div class="card-body">
+                    <h5 class="card-title">{{item.title}}</h5>
+                    <h6 class="card-text">{{item.short_desc}}</h6>
+                  </div>
+                  <span class="website" (click)="towebsite(item.website_url)"><i class="fa fa-link" ></i>WEBSITE</span>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="tab-pane" [ngClass]="getActiveTabCSSClass(1)" *ngIf="!evts.length">
+          <div class="container">
+            <h3 style="margin-bottom: 2rem;">Loading..</h3>
+            <div class="row">
+              
+            </div>
+          </div>
+        </div>
+        <!-- end::Ongoing -->
+
+        <!-- begin::Upcoming -->
+        <div class="tab-pane" [ngClass]="getActiveTabCSSClass(2)" *ngIf="completedevts.length">
+
+          <div class="container">
+            <h3 style="margin-bottom: 2rem;">Upcoming Events</h3>
+            <div class="row">
+              <div class="col-xl-4" *ngFor="let item of upcommingevts;let i=index" >
+                <div class="card card-custom gutter-b" style="height: 26.05em !important;">
+                  <img class="card-img-top" src="{{item.image_url}}" height="170">
+                  <div class="card-body">
+                    <h5 class="card-title">{{item.title}}</h5>
+                    <h6 class="card-text">{{item.short_desc}}</h6>
+                  </div>
+                  <p class="card-textt">{{item.start_date_display}} to {{item.end_date_display}}</p>
+                  <p class="card-textt-b" *ngIf="item.venue!='NA'">{{item.venue}}</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <h3 style="margin-bottom: 2rem;">Ongoing Events</h3>
+            <div class="row">
+              <div class="col-xl-4" *ngFor="let item of ongoingevts;let i=index" >
+                <div class="card card-custom gutter-b" style="height: 26.05em !important;">
+                  <img class="card-img-top" src="{{item.image_url}}" height="170">
+                  <div class="card-body">
+                    <h5 class="card-title">{{item.title}}</h5>
+                    <h6 class="card-text">{{item.short_desc}}</h6>
+                  </div>
+                  <p class="card-textt">{{item.start_date_display}} to {{item.end_date_display}}</p>
+                  <p class="card-textt-b" *ngIf="item.venue!='NA'">{{item.venue}}</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <h3 style="margin-bottom: 2rem;">Completed Events</h3>
+            <div class="row">
+              <div class="col-xl-4" *ngFor="let item of completedevts;let i=index" >
+                <div class="card card-custom gutter-b" style="height: 26.05em !important;">
+                  <img class="card-img-top" src="{{item.image_url}}" height="170">
+                  <div class="card-body">
+                    <h5 class="card-title">{{item.title}}</h5>
+                    <h6 class="card-text">{{item.short_desc}}</h6>
+                  </div>
+                  <p class="card-textt">{{item.start_date_display}} to {{item.end_date_display}}</p>
+                  <p class="card-textt-b" *ngIf="item.venue!='NA'">{{item.venue}}</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- <div class="tab-pane" [ngClass]="getActiveTabCSSClass(2)" *ngIf="!upcommingevts.length">
+          <div class="container">
+            <h3 style="margin-bottom: 2rem;">No Upcoming Events..!!</h3>
+            
+          </div>
+        </div> -->
+
+
+        <!-- end::Upcoming -->
+
+        <!-- begin::Completed -->
+        <div class="tab-pane" [ngClass]="getActiveTabCSSClass(3)" *ngIf="completedevts.length">
+          <div class="container">
+            <h3 style="margin-bottom: 2rem;">Completed Events</h3>
+            <div class="row">
+              <div class="col-xl-4" *ngFor="let item of completedevts;let i=index" >
+                <div class="card card-custom gutter-b" style="height: 26.05em !important;">
+                  <img class="card-img-top" src="{{item.image_url}}" height="170">
+                  <div class="card-body">
+                    <h5 class="card-title">{{item.title}}</h5>
+                    <h6 class="card-text">{{item.short_desc}}</h6>
+                  </div>
+                  <p class="card-textt">{{item.start_date_display}} to {{item.end_date_display}}</p>
+                  <p class="card-textt-b" *ngIf="item.venue!='NA'">{{item.venue}}</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" [ngClass]="getActiveTabCSSClass(3)" *ngIf="!completedevts.length">
+          <div class="container">
+            <h3 style="margin-bottom: 2rem;">Loading..</h3>
+            
+          </div>
+        </div>
+        <!-- end::Completed --> 
+      </div>
+    </div>
+    <!--end::Body-->
+</div>
+<!--end::Card-->

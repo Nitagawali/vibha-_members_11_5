@@ -1,0 +1,57 @@
+<!-- <div class="topbar-item">
+  <div class="btn btn-icon btn-hover-transparent-white btn-lg mr-1" (click)="logOut()">
+    <span [inlineSVG]="'./assets/media/svg/icons/Navigation/Sign-out.svg'" cacheSVG="true"
+      class="svg-icon svg-icon-xl"></span>
+  </div>
+</div> -->
+
+<!--begin::Topbar-->
+
+<ng-container>
+  <!-- <ng-container>
+    <ng-container>
+      <div class="topbar-item">
+        <div class="btn btn-icon btn-hover-transparent-white d-flex align-items-center btn-lg px-md-2 w-md-auto"
+          id="kt_quick_user_toggle">
+          <span class="text-white opacity-70 font-weight-bold font-size-base d-none d-md-inline mr-1">Hi,</span>
+          <span
+            class="text-white opacity-90 font-weight-bolder font-size-base d-none d-md-inline mr-4">{{ userName.fullname }}</span>
+          <span class="symbol symbol-35">
+            <span
+              class="symbol-label text-white font-size-h5 font-weight-bold bg-white-o-30">{{ userName.fullname[0] }}</span>
+          </span>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container> -->
+
+  <ng-container>
+    <!--begin::User-->
+    <ng-container *ngIf="userData">
+      <div class="dropdown" ngbDropdown placement="bottom-right">
+        <div class="topbar-item" data-toggle="dropdown" data-offset="0px,0px" ngbDropdownToggle>
+          <div class="btn btn-icon btn-hover-transparent-white d-flex align-items-center btn-lg px-md-2 w-md-auto" >
+            <span class="text-white opacity-70 font-weight-bold font-size-base d-none d-md-inline mr-1">Hi,</span>
+            <span
+              class="text-white opacity-90 font-weight-bolder font-size-base d-none d-md-inline mr-4"
+              style="text-transform: capitalize;">{{ userData.full_name }}</span>
+            <span class="symbol symbol-35">
+              <span style="text-transform: capitalize;"
+                class="symbol-label text-white font-size-h5 font-weight-bold bg-white-o-30">{{ userData.full_name[0] }}</span>
+            </span>
+          </div>
+        </div>
+        <!--end::Toggle-->
+        <!--begin::Dropdown-->
+        <div ngbDropdownMenu
+          class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-lg p-0">
+          <app-user-dropdown-inner *ngIf="userData"></app-user-dropdown-inner>
+        </div>
+      </div>
+      <!--end::Dropdown-->
+    </ng-container>
+    <!--end::User-->
+  </ng-container>
+</ng-container>
+
+<!--end::Topbar-->

@@ -1,0 +1,405 @@
+<div class="modal agriModalCorOTPErr" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>Server unreachable, please try again.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal agriModalWhatsappCode" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>Select whatsapp Country code.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal agriModalSuccess" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>Profile updated.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal agriModalErr" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>Error updating data..!!</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <app-notice [svg]="'./assets/media/svg/icons/Tools/Tools.svg'">
+  <p>
+    Profile page
+  </p>
+</app-notice> -->
+<!--begin::Card-->
+<div class="card card-custom gutter-b">
+  <!--begin::Header-->
+  <div class="card-header align-items-center">
+    <h3>Profile</h3>
+    <div class="row">
+
+      <a (click)="editcontrols()" *ngIf="disableform" class="btn btn-primary kt-margin-r-10" mat-raised-button matTooltip="Edit Member">
+				<!-- <i class="la la-edit"></i> -->
+				<span class="kt-hidden-mobile">Edit</span>
+			</a>
+      <a (click)="editcontrols()" *ngIf="!disableform" class="btn btn-primary kt-margin-r-10" mat-raised-button matTooltip="Edit Member">
+				<!-- <i class="la la-edit"></i> -->
+				<span class="kt-hidden-mobile">Cancel</span>
+			</a>
+      <a (click)="onupdate()" *ngIf="!disableform" class="btn btn-primary kt-margin-r-10" mat-raised-button matTooltip="Update Member Info">
+				<!-- <i class="la la-edit"></i> -->
+				<span class="kt-hidden-mobile">Save</span>
+			</a>
+
+    </div>
+  </div>
+  <!--end::Header-->
+    <!--begin::Body-->
+    <!-- <div class="card-body">
+      <div class="infoTableDiv">
+        <div class="spinner-border text-primary" role="status" *ngIf="!userData && !userPData">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <table class="table-responsive" *ngIf="userData && userPData">
+            <tr>
+                <td class="tbHead">Membership</td>
+                <td>{{userData.member_category}}</td>
+            </tr>
+            <tr>
+                <td class="tbHead">Country</td>
+                <td>{{userData.country_name}}</td>
+            </tr>
+            <tr>
+                <td class="tbHead">State</td>
+                <td>{{userData.state_name}}</td>
+            </tr>
+            <tr>
+                <td class="tbHead">District</td>
+                <td>{{userData.dist_name}}</td>
+            </tr>
+            <tr>
+                <td class="tbHead">Prant</td>
+                <td>{{userData.prant_name}}</td>
+            </tr>
+            <tr>
+                <td class="tbHead">Pincode</td>
+                <td>{{userData.pincode}}</td>
+            </tr>
+            <tr>
+                <td class="tbHead">Postal Address</td>
+                <td>{{userData.postal_address}}</td>
+            </tr>
+            <tr>
+                <td class="tbHead">Name</td>
+                <td>{{userData.Salutation}} {{userData.full_name}}</td>
+            </tr>
+            <tr>
+                <td class="tbHead">Gender</td>
+                <td>{{userData.gender}}</td>
+            </tr>
+            <tr>
+                <td class="tbHead">Date of Birth</td>
+                <td>{{userData.dob | date:'longDate'}}</td>
+            </tr>
+            <tr>
+                <td class="tbHead">Area of Interest</td>
+                <td>{{ getJson(userData.area_of_interest) }}</td>
+            </tr>
+            <tr>
+                <td class="tbHead">Affliated Institute</td>
+                <td>{{userData.institute}}</td>
+            </tr>
+            <tr>
+                <td class="tbHead">Designation</td>
+                <td>{{userData.designation}}</td>
+            </tr>
+            <tr>
+                <td class="tbHead">Email</td>
+                <td>{{userData.email}}</td>
+            </tr>
+            <tr>
+                <td class="tbHead">Primary Mobile</td>
+                <td>{{userData.primary_number_code}} - {{userData.mobile}}</td>
+            </tr>
+            <tr>
+                <td class="tbHead">Whatsapp Mobile</td>
+                <td>{{userData.whatsapp_number_code}} - {{userData.whatsapp_mobile}}</td>
+            </tr>
+            <tr>
+              <td class="tbHead">Newsletter Subscription</td>
+              <td style="text-transform: capitalize;">{{userData.newsletter_subscription}}</td>
+            </tr>
+            <tr>
+              <td class="tbHead">Payment ID</td>
+              <td style="text-transform: capitalize;">{{userPData.payment_id}}</td>
+            </tr>
+            <tr>
+              <td class="tbHead">Payment Amount</td>
+              <td style="text-transform: capitalize;">{{userPData.final_amount}}</td>
+            </tr>
+          </table>
+      </div>
+    </div> -->
+    
+    <div class="card-body">
+      
+      <form [formGroup]="userForm" class="kt-form kt-form--group-seperator-dashed">
+
+        <div class="spinner-border text-primary" role="status" *ngIf="!isloadedData">
+          <span class="sr-only">Loading...</span>
+        </div>
+
+        <div class="kt-form__section kt-form__section--first" *ngIf="isloadedData">
+          <h3>Personal Details</h3>
+          <div class="form-group kt-form__group row">
+
+            <div class="col-lg-4 kt-margin-bottom-20-mobile">
+              <mat-form-field class="mat-form-field-fluid" [style.width.px]=220>
+                  <mat-select [(value)]="memberdata.Salutation" [disabled]="disableform">
+                      <mat-option [value]="salutationArr[0]">Mr.</mat-option>
+                      <mat-option [value]="salutationArr[1]">Mrs.</mat-option>
+                      <mat-option [value]="salutationArr[2]">Miss.</mat-option>
+                      <mat-option [value]="salutationArr[3]">Dr.</mat-option>
+                      <mat-option [value]="salutationArr[4]">Shri.</mat-option>
+                      <mat-option [value]="salutationArr[5]">Prof.</mat-option>
+                  </mat-select>
+                  <mat-hint align="start" class="mat-hint">
+                      <p class="compulsory">*</p><strong>Salutation</strong>
+                  </mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 kt-margin-bottom-20-mobile">
+              <mat-form-field class="mat-form-field-fluid" [style.width.px]=220>
+                  <input matInput formControlName="fullname" [readonly]="disableform" />
+                  <mat-error>Full Name is
+                      <strong>required</strong>
+                  </mat-error>
+                  <mat-hint align="start" class="mat-hint">
+                      <p class="compulsory">*</p><strong>Full Name</strong>
+                  </mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 kt-margin-bottom-20-mobile">
+              <mat-form-field class="mat-form-field-fluid" [style.width.px]=220>
+                  <mat-select [(value)]="memberdata.gender" [disabled]="disableform">
+                      <mat-option [value]="genderArr[0]">Male</mat-option>
+                      <mat-option [value]="genderArr[1]">Female</mat-option>
+                      <mat-option [value]="genderArr[2]">Other</mat-option>
+                  </mat-select>
+                  <mat-hint align="start" class="mat-hint">
+                      <p class="compulsory">*</p><strong>Gender</strong>
+                  </mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 kt-margin-bottom-20-mobile">
+              <mat-form-field appearance="outline" floatLabel="never"
+              style="cursor: pointer;">
+                  <input matInput name="bday" [max]="todayDate"
+                  formControlName="userBday"  readonly 
+                  (dateChange)="selectedBday()"
+                  (click)="picker.open()"
+                  [matDatepicker]="picker" placeholder="Choose a date"
+                  data-parsley-group="uDate"
+                  data-parsley-errors-container="#errbox3"
+                  data-parsley-error-message="Please enter valid birthday."
+                  required
+                  style="cursor: pointer;">
+                  <mat-datepicker-toggle matSuffix [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker [disabled]="disableform"></mat-datepicker>
+                  <mat-hint align="start" class="mat-hint">
+                      <p class="compulsory">*</p><strong>Date of Birth</strong>
+                  </mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 kt-margin-bottom-20-mobile">
+              <mat-form-field class="mat-form-field-fluid" [style.width.px]=220>
+                  <mat-select [(value)]="area_of_interest" [disabled]="disableform" multiple>
+                      <mat-option [value]="interestList[0]">{{interestList[0]}}</mat-option>
+                      <mat-option [value]="interestList[1]">{{interestList[1]}}</mat-option>
+                      <mat-option [value]="interestList[2]">{{interestList[2]}}</mat-option>
+                      <mat-option [value]="interestList[3]">{{interestList[3]}}</mat-option>
+                      <mat-option [value]="interestList[4]">{{interestList[4]}}</mat-option>
+                      <mat-option [value]="interestList[5]">{{interestList[5]}}</mat-option>
+                      <mat-option [value]="interestList[6]">{{interestList[6]}}</mat-option>
+                      <mat-option [value]="interestList[7]">{{interestList[7]}}</mat-option>
+                      <mat-option [value]="interestList[8]">{{interestList[8]}}</mat-option>
+                      <mat-option [value]="interestList[9]">{{interestList[9]}}</mat-option>
+                      <mat-option [value]="interestList[10]">{{interestList[10]}}</mat-option>
+                      <mat-option [value]="interestList[11]">{{interestList[11]}}</mat-option>
+                      <mat-option [value]="interestList[12]">{{interestList[12]}}</mat-option>
+                  </mat-select>
+                  <mat-hint align="start">
+                      <strong>Area of Intrest</strong>
+                  </mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 kt-margin-bottom-20-mobile">
+              <mat-form-field class="mat-form-field-fluid" [style.width.px]=220>
+                  <input matInput formControlName="institute" [readonly]="disableform" />
+                  <mat-error>Institute is
+                      <strong>required</strong>
+                  </mat-error>
+                  <mat-hint align="start">
+                      <strong>Institute</strong>
+                  </mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 kt-margin-bottom-20-mobile">
+              <mat-form-field class="mat-form-field-fluid" [style.width.px]=220>
+                  <input matInput formControlName="designation" [readonly]="disableform" />
+                  <mat-error>Designation is
+                      <strong>required</strong>
+                  </mat-error>
+                  <mat-hint align="start">
+                      <strong>Designation</strong>
+                  </mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <h3>Contact Details</h3>
+          <div class="form-group kt-form__group row">
+
+            <div class="col-lg-4 kt-margin-bottom-20-mobile">
+              <mat-form-field class="mat-form-field-fluid" [style.width.px]=220>
+                  <input matInput value="{{ memberdata.email }}" type="email" disabled />
+                  <mat-error>Email is
+                      <strong>required</strong>
+                  </mat-error>
+                  <mat-hint align="start" class="mat-hint">
+                      <p class="compulsory">*</p><strong>Email</strong>
+                  </mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 kt-margin-bottom-20-mobile">
+              <mat-form-field class="mat-form-field-fluid" [style.width.px]=220>
+                  <mat-select [(value)]="memberdata.primary_number_code" [disabled]="disableform">
+                      <mat-option *ngFor="let item of countryArr" [value]="item.country_code">{{ item.country_code }}</mat-option>
+                  </mat-select>
+                  <mat-hint align="start" class="mat-hint">
+                      <p class="compulsory">*</p><strong>Mobile Country code</strong>
+                  </mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 kt-margin-bottom-20-mobile">
+              <mat-form-field class="mat-form-field-fluid" [style.width.px]=220>
+                  <input matInput formControlName="mobile" type="number" (keyup)="validatephone($event)" [readonly]="disableform" />
+                  <mat-error>Mobile is 
+                      <strong>invalid</strong>
+                  </mat-error>
+                  <mat-hint align="start" class="mat-hint">
+                      <p class="compulsory">*</p><strong>Mobile</strong>
+                  </mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 kt-margin-bottom-20-mobile">
+              <mat-form-field class="mat-form-field-fluid" [style.width.px]=220>
+                  <mat-select [(value)]="memberdata.whatsapp_number_code" [disabled]="disableform">
+                      <mat-option *ngFor="let item of countryArr" [value]="item.country_code">{{ item.country_code }}</mat-option>
+                  </mat-select>
+                  <mat-hint align="start">
+                      <strong>Whatsapp Country code</strong>
+                  </mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 kt-margin-bottom-20-mobile">
+              <mat-form-field class="mat-form-field-fluid" [style.width.px]=220>
+                  <input matInput formControlName="whatsappnumber" type="number" (keyup)="validatephone($event)" [readonly]="disableform" />
+                  <mat-error>Whatsapp number
+                      <strong>invalid</strong>
+                  </mat-error>
+                  <mat-hint align="start">
+                      <strong>Whatsapp number</strong>
+                  </mat-hint>
+              </mat-form-field>
+            </div>
+
+          </div>
+
+          <h3>Regional Details</h3>
+          <div class="form-group kt-form__group row">
+
+            <div class="col-lg-4 kt-margin-bottom-20-mobile">
+              <mat-form-field class="mat-form-field-fluid" [style.width.px]=220>
+                  <mat-select [(value)]="memberdata.country" [disabled]="disableform" >
+                      <mat-option *ngFor="let item of countryArr" [value]="item.country_id">{{ item.name }}</mat-option>
+                  </mat-select>
+                  <mat-hint align="start" class="mat-hint">
+                      <p class="compulsory">*</p><strong>Country</strong>
+                  </mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 kt-margin-bottom-20-mobile">
+              <mat-form-field class="mat-form-field-fluid" [style.width.px]=220>
+                  <mat-select [(value)]="memberdata.state_id" [disabled]="disableform" (selectionChange)="fetchdistrict()">
+                      <mat-option *ngFor="let item of stateArr" [value]="item.ID">{{ item.name }}</mat-option>
+                  </mat-select>
+                  <mat-hint align="start" class="mat-hint">
+                      <p class="compulsory">*</p><strong>State</strong>
+                  </mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 kt-margin-bottom-20-mobile">
+                <mat-form-field class="mat-form-field-fluid" [style.width.px]=220>
+                    <mat-select [(value)]="memberdata.district" [disabled]="disableform" (selectionChange)="fetchprant()">
+                        <mat-option *ngFor="let item of districtArr" [value]="item.dist_id">{{ item.dist_name }}</mat-option>
+                    </mat-select>
+                    <mat-hint align="start" class="mat-hint">
+                        <p class="compulsory">*</p><strong>District</strong>
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="col-lg-4 kt-margin-bottom-20-mobile">
+              <mat-form-field class="mat-form-field-fluid" [style.width.px]=220>
+                  <input matInput value="{{ prantArr[0].prant_name }} {{ prantArr[0].prant_unit_name}}" disabled />
+                  <mat-error>Prant is
+                      <strong>required</strong>
+                  </mat-error>
+                  <mat-hint align="start">
+                      <strong>Prant</strong>
+                  </mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 kt-margin-bottom-20-mobile">
+                <mat-form-field class="mat-form-field-fluid" [style.width.px]=220>
+                    <input matInput formControlName="pincode" type="number" (keyup)="validatephone($event)" maxlength="6" [readonly]="disableform" />
+                    <mat-error>Pincode is
+                        <strong>invalid</strong>
+                    </mat-error>
+                    <mat-hint align="start">
+                        <strong>Pincode</strong>
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="col-lg-4 kt-margin-bottom-20-mobile">
+              <mat-form-field class="mat-form-field-fluid" [style.width.px]=220>
+                  <input matInput formControlName="postaladdress" [readonly]="disableform" />
+                  <mat-error>Postal Address is
+                      <strong>required</strong>
+                  </mat-error>
+                  <mat-hint align="start">
+                      <strong>Postal Address</strong>
+                  </mat-hint>
+              </mat-form-field>
+            </div>
+
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+    <!--end::Body-->
+</div>
+<!--end::Card-->
+

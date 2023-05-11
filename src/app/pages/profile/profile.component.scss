@@ -1,0 +1,82 @@
+:host {
+  .hljs {
+    background: transparent !important;
+  }
+}
+
+.agriModal, .agriModalLoading, .agriModalCorOTP, .agriModalCorOTPErr, .agriModalNetError, .registerFail, .registerSuccess {
+  font-family: Poppins !important;
+  border-radius: 0.25rem;
+  z-index: 1050 !important;
+  color: #ED7232;
+border: 1px solid #ED7232;
+  padding: 0.5rem 1rem;
+  .modal-body {
+      padding-bottom: 0;
+  }
+  .modal-footer {
+      padding-top: 0;
+      border: none;
+  }
+  .modal-dialog {
+      width: fit-content;
+  }
+  .okBtn {
+      border: 0;
+      background-color: #ED7232;
+      color: white;
+      width: fit-content;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      outline: none; 
+      float: right;
+  }
+}
+
+td, th {
+	border: 1px solid #e2e5ec;
+  padding: 4px 10px;
+}
+table {
+	border-collapse: collapse;
+}
+.tbHead {
+	font-weight: 600;
+}
+.table-responsive {
+  width: fit-content !important;
+}
+.infoTableDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.card-header{
+  a{
+    margin: 5px;
+  }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+ -webkit-appearance: none;
+ margin: 0;
+}
+/* Firefox */
+input[type=number] {
+ -moz-appearance: textfield;
+}
+
+.compulsory{
+    color: red;
+}
+
+.mat-hint{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+mat-form-field{
+  margin-bottom: 5px;
+}

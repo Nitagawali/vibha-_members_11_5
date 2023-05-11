@@ -1,0 +1,59 @@
+<div class="modal agriModalCorOTPErr" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <p>Server unreachable, please try again.</p>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="card card-custom gutter-b">
+    <div class="card-header align-items-center">
+        <h3>Payment</h3>
+    </div>
+
+    <div class="card-body">
+      <div class="infoTableDiv">
+        <div class="spinner-border text-primary" role="status" *ngIf="!userPData">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <table class="table-responsive" *ngIf="userPData">
+            <tr>
+                <td class="tbHead">Name</td>
+                <td>{{userPData.name}}</td>
+            </tr>
+            <tr>
+                <td class="tbHead">Email</td>
+                <td>{{userPData.email}}</td>
+            </tr>
+            <tr>
+                <td class="tbHead">Subscribtion Type</td>
+                <td>{{userPData.purpose}}</td>
+            </tr>
+            <tr>
+                <td class="tbHead">Amount</td>
+                <td>{{userPData.amount | currency:'INR':'symbol-narrow':'4.2-2'}}</td>
+            </tr>
+            <tr>
+                <td class="tbHead">Convenience Fee</td>
+                <td>{{userPData.convenience_fee | currency:'INR':'symbol-narrow':'4.2-2'}}</td>
+            </tr>
+            <tr>
+                <td class="tbHead">Payment Amount</td>
+                <td style="text-transform: capitalize;">{{userPData.final_amount | currency:'INR':'symbol-narrow':'4.2-2'}}</td>
+              </tr>
+            <!-- <tr>
+                <td class="tbHead">Status</td>
+                <td>{{userPData.status}}</td>
+            </tr> -->
+            <tr>
+              <td class="tbHead">Date</td>
+              <td style="text-transform: capitalize;">{{userPData.date}} {{userPData.time}}</td>
+            </tr>
+            
+          </table>
+      </div>
+    </div>
+
+</div>
